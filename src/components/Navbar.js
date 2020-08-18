@@ -1,21 +1,22 @@
 import React from 'react';
 import '../../src/App.css';
+import logo from '../assets/logo192.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-sm navbar-light navbar-custom">
-      <a class="navbar-brand" href="index.html">huddleup</a>
+    <nav class="navbar">
+      <a class="navbar-brand" href="index"><img src="{logo}" alt="huddleup logo" />huddleup</a>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="nav navbar-nav ml-auto nav-links">
           <Link to='/statistics'>
-            <li>Statistics</li>
+            <button>Statistics</button>
           </Link>
           <Link to='/schedule' >
-            <li>Schedule</li>
+            <button>Schedule</button>
           </Link>
           <Link to='/roster'>
-            <li>Roster</li>
+            <button>Roster</button>
           </Link>
         </ul>
       </div>
