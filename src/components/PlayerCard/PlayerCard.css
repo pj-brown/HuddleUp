@@ -1,0 +1,58 @@
+/* 
+BLUE
+#3757AE
+
+ORANGE
+#E26A0D
+*/
+
+.playercard {
+  display: flex;
+  width: 300px;
+  background: #3757AE;
+  border-radius: 10px;
+  color: white;
+  padding: 15px 5px;
+  position: relative;
+}
+
+.player-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player-info {
+  text-align: left;
+  margin-left: 25px;
+}
+
+p {
+  margin: 2px;
+}
+
+.editplayer-btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  height: 25px;
+  line-height: 25px;
+  width: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #E26A0D;
+  cursor: pointer;
+}
+
+.editstats-btn {
+  position: absolute;
+  right: 35px;
+  bottom: 5px;
+  height: 25px;
+  line-height: 25px;
+  width: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #E26A0D;
+  cursor: pointer;
+}
