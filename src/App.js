@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Statistics from './pages/Statistics';
 import Schedule from './pages/Schedule';
 import Roster from './pages/Roster';

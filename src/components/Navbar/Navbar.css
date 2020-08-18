@@ -1,0 +1,47 @@
+/* 
+#3757AE - blue
+#E26A0D - orange
+*/
+
+.navbar {
+  background-color: #3757ae;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  height: auto;
+  font-size: 2.25em;
+  padding: 10px;
+}
+
+.nav-logo {
+  height: 35px;
+  padding-right: 5px;
+  fill: #e26a0d;
+  stroke: #e26a0d;
+  stroke-width: 7;
+}
+
+.nav-logo-container {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  height: 25px;
+}
+
+.nav-button-container {
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  height: 50px;
+}
+
+.nav-button {
+  padding: 10px 25px;
+  border: none;
+  background-color: #e26a0d;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
