@@ -19,31 +19,31 @@ CREATE TABLE managers (
 
 CREATE TABLE roster (
     id INTEGER (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    managerID,
-    teamName,
+    INTEGER managerID,
+    VARCHAR teamName(30),
     location,
-    bio,
+    VARCHAR bio(30),
 	FOREIGN KEY (managerID) REFERENCES managers (id)
 );
 
 CREATE TABLE players (
     id INTEGER (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    rosterID,
-    firstName,
-    lastName,
-    phoneNumber,
-    position,
-    number,
-	points,
-    rebounds,
-    assist,
-    gamesPlayed,
+    INTEGER rosterID (11),
+    VARCHAR firstName (30),
+    VARCHAR lastName (30),
+    VARCHAR phoneNumber (12),
+    VARCHAR position (3),
+    TINYINT playerNumber (11),
+	TINYINT points (11),
+    TINYINT rebounds (11),
+    TINYINT assist (11),
+    TINYINT gamesPlayed (11),
 	FOREIGN KEY (rosterID) REFERENCES roster (id)
 );
 
 CREATE TABLE events (
     id INTEGER (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    rosterID,
+    INTEGER rosterID (11),
     date,
     type, (practice or game)
 	FOREIGN KEY (rosterID) REFERENCES roster (id)
