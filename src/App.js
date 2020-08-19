@@ -5,8 +5,10 @@ import Statistics from './pages/Statistics';
 import Schedule from './pages/Schedule';
 import Roster from './pages/Roster';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { auth } from './firebase/init';
 
 function App() {
+  console.log('auth', auth);
   return (
     <Router>
       <div className="App">
