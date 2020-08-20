@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-logo-container">
-        <Link to="/main">
+        <Link to="/main" style={{ textDecoration: "none", color: "white" }}>
           <p style={{ marginLeft: "25px" }}><Logo className="nav-logo" />huddleup</p>
         </Link>
       </div>

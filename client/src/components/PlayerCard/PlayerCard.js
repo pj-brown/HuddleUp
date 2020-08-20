@@ -12,15 +12,17 @@ const PlayerCard = () => {
       </aside>
 
       <div className="player-info">
-        <p className="position">Position: </p>
-        <p className="player-number">Number: </p>
+        {/* <p className="position">Position: </p> */}
+        <p className="player-phone">Phone Number: </p>
+        <p className="player-number">Jersey Number: </p>
         <p className="ppg">PPG: </p>
         <p className="rpg">RPG: </p>
         <p className="apg">APG: </p>
+        <p className="total-games">Games Played: </p>
       </div>
       <div>
-        <button className="editplayer-btn" title="Edit Player"></button>
-        <button className="editstats-btn" title="Edit Player Stats"></button>
+        <button className="editplayer-btn" title="Edit Player">Update</button>
+        <button className="editstats-btn" title="Edit Player Stats">Stats</button>
       </div>
     </div>
   )

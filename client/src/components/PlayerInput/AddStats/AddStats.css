@@ -1,0 +1,27 @@
+/* 
+BLUE
+#3757AE
+
+ORANGE
+#E26A0D
+*/
+
+.player-modal {
+  display: flex;
+  width: 640px;
+  background: #3757AE;
+  border-radius: 10px;
+  color: white;
+  padding: 15px 25px;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  padding: 5px 5px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
