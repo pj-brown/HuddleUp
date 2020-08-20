@@ -1,9 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     const Players = sequelize.define("Players", {
         // The email cannot be null, and must be a proper email before creation
-        rosterID: {
-            type: DataTypes.STRING
-        },
         firstName: {
             type: DataTypes.STRING
         },

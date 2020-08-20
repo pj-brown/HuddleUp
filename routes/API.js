@@ -5,8 +5,10 @@ module.exports = function (app) {
 	// Features
 	// manager is able to create, update, read and delete their eintire roster.
 	//not interested in player data
+
 	// Read
 	app.get("/api/roster", (req, res) => {
+<<<<<<< HEAD
 		if (req.user) {
 			db.Roster.findAll({
 				where: {
@@ -18,13 +20,28 @@ module.exports = function (app) {
 				res.json(dbRoster);
 			});
 		}
+=======
+		db.Roster.findAll({
+			where: {
+				displayName : req.user.displayName,
+			},
+		}).then((dbRoster) => {
+			//we have teh roster info
+			//db.Players.findAll
+			console.log("WORKING: ")
+			res.json(dbRoster);
+		})
+			.catch((err) => res.json(err));
+
+
+>>>>>>> a882dfeefc57841669088449339b57396404b542
 	});
 
 	app.get("/api/players", (req, res) => {
 		if (req.user) {
 			db.Player.findAll({
 				where: {
-					rosterID: req.user.id,
+					RosterId: req.user.id,
 				},
 			});
 		}
@@ -33,7 +50,7 @@ module.exports = function (app) {
 	app.get("/api/players/:id", (req, res) => {
 		db.Player.findOne({
 			where: {
-				id: req.params.id,
+				PlayerId: req.params.id,
 			},
 		});
 	});
@@ -41,7 +58,7 @@ module.exports = function (app) {
 	app.get("/api/events/:id", (req, res) => {
 		db.Player.findOne({
 			where: {
-				id: req.params.id,
+				EventId: req.params.id,
 			},
 		});
 	});
@@ -50,19 +67,31 @@ module.exports = function (app) {
 		if (req.user) {
 			db.Event.findAll({
 				where: {
-					rosterID: req.user.id,
+					RosterId: req.user.id,
 				},
 			});
 		}
 	});
 
 	// Create
+	app.post("/api/manager", (req, res) => {
+		db.Manager.create({
+			email: req.body.email,
+			password: req.body.password,
+
+		})
+			.then((dbManager) => {
+				res.json(dbManager);
+			})
+			.catch((err) => res.json(err));
+	});
 	app.post("/api/roster", (req, res) => {
 		db.Roster.create({
 			teamName: req.body.teamName,
 			city: req.body.city,
 			state: req.body.state,
 			bio: req.body.bio,
+			ManagerId: req.body.ManagerId
 		})
 			.then((dbRoster) => {
 				res.json(dbRoster);
@@ -70,7 +99,7 @@ module.exports = function (app) {
 			.catch((err) => res.json(err));
 	});
 
-	app.post("/players", (req, res) => {
+	app.post("/api/players", (req, res) => {
 		db.Players.create({
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
@@ -80,6 +109,7 @@ module.exports = function (app) {
 			rebounds: req.body.rebounds,
 			assist: req.body.assist,
 			gamesPlayed: req.body.gamesPlayed,
+			RosterId: req.body.RosterId
 		})
 			.then((dbPlayers) => {
 				res.json(dbPlayers);
@@ -90,8 +120,10 @@ module.exports = function (app) {
 	app.post("/api/events", (req, res) => {
 		db.Events.create({
 			eventDate: req.body.eventDate,
-			eventTime: req.body.eventTime,
+			eventStartTime: req.body.eventStartTime,
+			eventEndTime: req.body.eventEndTime,
 			eventType: req.body.eventType,
+			RosterId: req.body.RosterId
 		})
 			.then((dbEvents) => {
 				res.json(dbEvents);
@@ -123,9 +155,14 @@ module.exports = function (app) {
 			})
 			.catch((err) => res.json(err));
 	});
+<<<<<<< HEAD
 
 		app.put("/api/events/:id", (req, res) => {
 		db.Event.update(req.body, {
+=======
+	app.put("/api/roster/:id", (req, res) => {
+		db.Roster.update(req.body, {
+>>>>>>> a882dfeefc57841669088449339b57396404b542
 			where: {
 				id: req.params.id,
 			},

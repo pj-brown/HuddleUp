@@ -15,6 +15,10 @@ if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
 
+//ROUTES
+require("./routes/API.js")(app);
+
+
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function () {
 	app.listen(PORT, function () {
