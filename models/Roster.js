@@ -1,9 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     const Roster = sequelize.define("Roster", {
-
-        managerID: {
-            type: DataTypes.STRING
-        },
+ 
         teamName: {
             type: DataTypes.STRING
         },
@@ -29,14 +26,12 @@ module.exports = function (sequelize, DataTypes) {
 
         // update later
         Roster.hasMany(models.Players, {
-            foreignKey: {
-                allowNull: false
-            }
+            onDelete: "cascade"
+
         })
         Roster.hasMany(models.Events, {
-            foreignKey: {
-                allowNull: false
-            }
+            onDelete: "cascade"
+
         })
 
     }
