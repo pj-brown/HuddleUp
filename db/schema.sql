@@ -45,5 +45,4 @@ CREATE TABLE events (
     eventDate DATE ,
     eventTime TIME ,
     eventType INTEGER (11), 
-	FOREIGN KEY (rosterID) REFERENCES roster (id)
-);
+	F

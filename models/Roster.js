@@ -25,8 +25,20 @@ module.exports = function (sequelize, DataTypes) {
             foreignKey: {
                 allowNull: false
             }
+        });
+        
+        // update later
+        Roster.hasMany(models.Players, {
+            foreignKey: {
+                allowNull: false
+            }
         })
-
+        Roster.hasMany(models.Events, {
+            foreignKey: {
+                allowNull: false
+            }
+        })
+        
     }
     return Roster;
 };

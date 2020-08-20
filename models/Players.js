@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Players.associate = function (models) {
+    Players.associate = function(models) {
 
         Players.belongsTo(models.Roster, {
             foreignKey: {
