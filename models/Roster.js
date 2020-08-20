@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-    var Roster = sequelize.define("roster", {
-        
+    const Roster = sequelize.define("Roster", {
+
         managerID: {
             type: DataTypes.STRING
         },
@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        
+
         // update later
         Roster.hasMany(models.Players, {
             foreignKey: {
@@ -38,7 +38,7 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         })
-        
+
     }
     return Roster;
 };
