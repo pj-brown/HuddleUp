@@ -15,7 +15,6 @@ module.exports = function (app) {
 			}).then((dbRoster) => {
 				//we have teh roster info
 				//db.Players.findAll
-
 				res.json(dbRoster);
 			});
 		}
@@ -114,6 +113,18 @@ module.exports = function (app) {
 	});
 
 	app.put("/api/events/:id", (req, res) => {
+		db.Event.update(req.body, {
+			where: {
+				id: req.params.id,
+			},
+		})
+			.then((dbEvent) => {
+				res.json(dbEvent);
+			})
+			.catch((err) => res.json(err));
+	});
+
+		app.put("/api/events/:id", (req, res) => {
 		db.Event.update(req.body, {
 			where: {
 				id: req.params.id,
