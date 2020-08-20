@@ -1,6 +1,6 @@
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
-    var Event = sequelize.define("events", {
+    const Event = sequelize.define("Events", {
         // The email cannot be null, and must be a proper email before creation
         rosterID: {
             type: DataTypes.INTEGER
@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
         eventType: {
             type: DataTypes.INTEGER
         },
-       
+
     });
 
     Event.associate = function (models) {
