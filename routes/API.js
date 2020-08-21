@@ -8,7 +8,7 @@ module.exports = function (app) {
 
 	// Read
 	app.get("/api/roster", (req, res) => {
-		if (req.user) {
+		
 			db.Roster.findAll({
 				where: {
 					managerID: req.user.id,
@@ -18,7 +18,7 @@ module.exports = function (app) {
 				//db.Players.findAll
 				res.json(dbRoster);
 			}).catch ((err) => res.json(err))
-		};
+		
 });
 
 app.get("/api/players/:id", (req, res) => {
