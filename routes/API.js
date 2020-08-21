@@ -10,7 +10,7 @@ module.exports = function (app) {
 	app.get("/api/roster", (req, res) => {
 		db.Roster.findAll({
 			where: {
-				displayName : req.user.displayName,
+				ManagerId : req.body.ManagerId,
 			},
 		}).then((dbRoster) => {
 			//we have teh roster info
@@ -23,22 +23,25 @@ module.exports = function (app) {
 
 	});
 
-	app.get("/api/players", (req, res) => {
+	app.get("/api/players/:id", (req, res) => {
 		if (req.user) {
-			db.Player.findAll({
+			db.Players.findAll({
 				where: {
-					RosterId: req.user.id,
+					RosterId: req.params.id,
 				},
-			});
+			}).then(dbPlayers => res.json(dbPlayers))
+		}
+		else {
+			res.send("You must be logged in to view this page.")
 		}
 	});
 
-	app.get("/api/players/:id", (req, res) => {
-		db.Player.findOne({
+	app.get("/api/player/:id", (req, res) => {
+		db.Players.findOne({
 			where: {
-				PlayerId: req.params.id,
+				id: req.params.id,
 			},
-		});
+		}).then(dbPlayer => res.json(dbPlayer))
 	});
 
 	app.get("/api/events/:id", (req, res) => {
