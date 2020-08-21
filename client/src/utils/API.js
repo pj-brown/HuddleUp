@@ -6,7 +6,7 @@ export default {
   createManager: function() {
     return axios.post("/api/manager");
   },
-  getBaseBreedsList: function() {
-    return axios.get("https://dog.ceo/api/breeds/list");
+  getAllPlayers: function() {
+    return axios.get("/api/players/1");
   }
 };

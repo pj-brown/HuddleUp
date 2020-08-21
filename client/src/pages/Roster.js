@@ -10,6 +10,7 @@ class Roster extends Component {
 
 	componentDidMount() {
 		console.log("Rendering Roster!");
+		
 	}
 
 	render() {
