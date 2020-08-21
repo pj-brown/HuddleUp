@@ -18,25 +18,28 @@ module.exports = function (app) {
 				//db.Players.findAll
 				res.json(dbRoster);
 			});
-		}
-	});
-
-	app.get("/api/players", (req, res) => {
-		if (req.user) {
-			db.Player.findAll({
-				where: {
-					RosterId: req.user.id,
-				},
-			});
-		}
+		}.catch((err) => res.json(err));
 	});
 
 	app.get("/api/players/:id", (req, res) => {
-		db.Player.findOne({
+		if (req.user) {
+			db.Players.findAll({
+				where: {
+					RosterId: req.params.id,
+				},
+			}).then(dbPlayers => res.json(dbPlayers))
+		}
+		else {
+			res.send("You must be logged in to view this page.")
+		}
+	});
+
+	app.get("/api/player/:id", (req, res) => {
+		db.Players.findOne({
 			where: {
-				PlayerId: req.params.id,
+				id: req.params.id,
 			},
-		});
+		}).then(dbPlayer => res.json(dbPlayer))
 	});
 
 	app.get("/api/events/:id", (req, res) => {
