@@ -68,11 +68,21 @@ module.exports = function (app) {
 			});
 		}
 	});
+	app.get("/api/manager/:id", (req, res) => {
+		if (req.user) {
+			db.Manager.findAll({
+				where: {
+					uid: req.params.id,
+				},
+			});
+		}
+	});
 
 	// Create
 	app.post("/api/manager", (req, res) => {
 		db.Manager.create({
-			displayName: req.body.displayName
+			displayName: req.body.displayName,
+			uid: req.body.uid
 		})
 			.then((dbManager) => {
 				res.json(dbManager);
@@ -102,7 +112,7 @@ module.exports = function (app) {
 			playerNumber: req.body.playerNumber,
 			points: req.body.points,
 			rebounds: req.body.rebounds,
-			assists: req.body.assists,
+			assist: req.body.assist,
 			gamesPlayed: req.body.gamesPlayed,
 			RosterId: req.body.RosterId
 		})
