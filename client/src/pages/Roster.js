@@ -37,21 +37,20 @@ const Roster = () => {
 	// Then reload players from the database
 	function handleAddPlayer(event) {
 		event.preventDefault();
-		if (formObject.firstName && formObject.lastName) {
-			API.savePlayer({
-				firstName: formObject.firstName,
-				lastName: formObject.lastName,
-				phoneNumber: formObject.phoneNumber,
-				playerNumber: formObject.playerNumber,
-				points: '',
-				rebounds: '',
-				assists: '',
-				gamesPlayed: '',
-				RosterId: 1
-			})
-				.then(res => loadPlayers())
-				.catch(err => console.log(err));
-		}
+		console.log(formObject.firstName)
+		API.savePlayer({
+			firstName: formObject.firstName,
+			lastName: formObject.lastName,
+			phoneNumber: formObject.phoneNumber,
+			playerNumber: formObject.playerNumber,
+			points: 0,
+			rebounds: 0,
+			assist: 0,
+			gamesPlayed: 0,
+			RosterId: 1
+		})
+			.then(res => loadPlayers())
+			.catch(err => console.log(err));
 	};
 
 
@@ -68,7 +67,7 @@ const Roster = () => {
 						playerNumber={player.playerNumber}
 						points={player.points}
 						rebounds={player.rebounds}
-						assists={player.assists}
+						assist={player.assist}
 						gamesPlayed={player.gamesPlayed}
 					/>
 				))}

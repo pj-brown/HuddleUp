@@ -4,8 +4,14 @@ export default {
   createRoster: function () {
     return axios.post("/api/roster");
   },
-  createManager: function (displayName) {
-    return axios.post("/api/manager/" + displayName);
+  loadRoster: function () {
+    return axios.get("/api/roster");
+  },
+  createManager: function () {
+    return axios.post("/api/manager/");
+  },
+  loadMabager: function () {
+    return axios.get("/api/manager");
   },
   // getOnePlayer: function () {
   //   return axios.get("/api/player:id");
