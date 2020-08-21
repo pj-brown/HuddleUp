@@ -6,11 +6,11 @@ const UserContext = createContext({ user: null });
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('currentUser'))) {
-      setUser(JSON.parse(localStorage.getItem('currentUser')));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (JSON.parse(localStorage.getItem('currentUser'))) {
+  //     setUser(JSON.parse(localStorage.getItem('currentUser')));
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('currentUser'))) {
@@ -21,12 +21,12 @@ export const UserProvider = ({ children }) => {
 
     const unsub = auth.onAuthStateChanged(authUser => {
       if (authUser) {
-        const { displayName, email } = authUser;
+        const { displayName, email, uid } = authUser;
         localStorage.setItem(
           'currentUser',
-          JSON.stringify({ displayName: displayName || email, email })
+          JSON.stringify({ displayName: displayName || email, email, uid })
         );
-        setUser({ displayName: displayName || email, email });
+        setUser({ displayName: displayName || email, email, uid });
       }
     });
 

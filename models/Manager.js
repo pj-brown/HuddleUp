@@ -2,18 +2,18 @@
 module.exports = function (sequelize, DataTypes) {
   const Manager = sequelize.define("Manager", {
     // The email cannot be null, and must be a proper email before creation
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
+    // email: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: true,
+    //   validate: {
+    //     isEmail: true
+    //   }
+    // },
     // The password cannot be null
-    password: {
-      type: DataTypes.STRING,
-    },
+    // password: {
+    //   type: DataTypes.STRING,
+    // },
     displayName: {
       type: DataTypes.STRING,
     }

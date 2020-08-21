@@ -7,19 +7,28 @@ module.exports = function (app) {
 	//not interested in player data
 
 	// Read
+	// Get all players in DB
+	app.get("/api/players", function (req, res) {
+		db.Players.findAll({})
+			.then(function (dbPlayers) {
+				console.log(dbPlayers);
+				res.json(dbPlayers);
+			})
+			.catch(err => res.json(err));
+	});
+
 	app.get("/api/roster", (req, res) => {
-		if (req.user) {
-			db.Roster.findAll({
-				where: {
-					managerID: req.user.id,
-				},
-			}).then((dbRoster) => {
-				//we have teh roster info
-				//db.Players.findAll
-				res.json(dbRoster);
-			}).catch ((err) => res.json(err))
-		};
-});
+		db.Roster.findAll({
+			where: {
+				managerID: req.user.id,
+			},
+		}).then((dbRoster) => {
+			//we have teh roster info
+			//db.Players.findAll
+			res.json(dbRoster);
+		}).catch((err) => res.json(err));
+
+	});
 
 app.get("/api/players/:id", (req, res) => {
 	if (req.user) {
@@ -60,46 +69,49 @@ app.get("/api/events", (req, res) => {
 	}
 });
 
-// Create
-app.post("/api/manager", (req, res) => {
-	db.Manager.create({
-		email: req.body.email,
-		password: req.body.password,
-	})
-		.then((dbManager) => {
-			res.json(dbManager);
+	app.get("/api/events", (req, res) => {
+		if (req.user) {
+			db.Event.findAll({
+				where: {
+					RosterId: req.user.id,
+				},
+			});
+		}
+	});
+
+	// Create
+	app.post("/api/manager", (req, res) => {
+		db.Manager.create({
+			displayName: req.body.displayName
+		})
+			.then((dbManager) => {
+				res.json(dbManager);
+			})
+			.catch((err) => res.json(err));
+	});
+
+	app.post("/api/roster", (req, res) => {
+		db.Roster.create({
+			teamName: req.body.teamName,
+			city: req.body.city,
+			state: req.body.state,
+			bio: req.body.bio,
+			ManagerId: req.body.ManagerId
 		})
 		.catch((err) => res.json(err));
 });
 
-app.post("/api/roster", (req, res) => {
-	db.Roster.create({
-		teamName: req.body.teamName,
-		city: req.body.city,
-		state: req.body.state,
-		bio: req.body.bio,
-		ManagerId: req.body.ManagerId
-	})
-		.then((dbRoster) => {
-			res.json(dbRoster);
-		})
-		.catch((err) => res.json(err));
-});
-
-app.post("/api/players", (req, res) => {
-	db.Players.create({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		phoneNumber: req.body.phoneNumber,
-		playerNumber: req.body.playerNumber,
-		points: req.body.points,
-		rebounds: req.body.rebounds,
-		assist: req.body.assist,
-		gamesPlayed: req.body.gamesPlayed,
-		RosterId: req.body.RosterId
-	})
-		.then((dbPlayers) => {
-			res.json(dbPlayers);
+	app.post("/api/players", (req, res) => {
+		db.Players.create({
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			phoneNumber: req.body.phoneNumber,
+			playerNumber: req.body.playerNumber,
+			points: req.body.points,
+			rebounds: req.body.rebounds,
+			assists: req.body.assists,
+			gamesPlayed: req.body.gamesPlayed,
+			RosterId: req.body.RosterId
 		})
 		.catch((err) => res.json(err));
 });
