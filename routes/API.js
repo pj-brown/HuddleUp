@@ -8,19 +8,17 @@ module.exports = function (app) {
 
 	// Read
 	app.get("/api/roster", (req, res) => {
-		db.Roster.findAll({
-			where: {
-				ManagerId : req.body.ManagerId,
-			},
-		}).then((dbRoster) => {
-			//we have teh roster info
-			//db.Players.findAll
-			console.log("WORKING: ")
-			res.json(dbRoster);
-		})
-			.catch((err) => res.json(err));
-
-
+		if (req.user) {
+			db.Roster.findAll({
+				where: {
+					managerID: req.user.id,
+				},
+			}).then((dbRoster) => {
+				//we have teh roster info
+				//db.Players.findAll
+				res.json(dbRoster);
+			});
+		}.catch((err) => res.json(err));
 	});
 
 	app.get("/api/players/:id", (req, res) => {
@@ -67,13 +65,13 @@ module.exports = function (app) {
 		db.Manager.create({
 			email: req.body.email,
 			password: req.body.password,
-
 		})
 			.then((dbManager) => {
 				res.json(dbManager);
 			})
 			.catch((err) => res.json(err));
 	});
+	
 	app.post("/api/roster", (req, res) => {
 		db.Roster.create({
 			teamName: req.body.teamName,
@@ -144,6 +142,7 @@ module.exports = function (app) {
 			})
 			.catch((err) => res.json(err));
 	});
+
 	app.put("/api/roster/:id", (req, res) => {
 		db.Roster.update(req.body, {
 			where: {

@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
     if (JSON.parse(localStorage.getItem('currentUser'))) {
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       setUser(currentUser);
+      console.log(currentUser)
     }
 
     const unsub = auth.onAuthStateChanged(authUser => {
