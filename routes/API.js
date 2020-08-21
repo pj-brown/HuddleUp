@@ -7,18 +7,27 @@ module.exports = function (app) {
 	//not interested in player data
 
 	// Read
+	// Get all players in DB
+	app.get("/api/players", function (req, res) {
+		db.Players.findAll({})
+			.then(function (dbPlayers) {
+				console.log(dbPlayers);
+				res.json(dbPlayers);
+			})
+			.catch(err => res.json(err));
+	});
+
 	app.get("/api/roster", (req, res) => {
-		if (req.user) {
-			db.Roster.findAll({
-				where: {
-					managerID: req.user.id,
-				},
-			}).then((dbRoster) => {
-				//we have teh roster info
-				//db.Players.findAll
-				res.json(dbRoster);
-			});
-		}.catch((err) => res.json(err));
+		db.Roster.findAll({
+			where: {
+				managerID: req.user.id,
+			},
+		}).then((dbRoster) => {
+			//we have teh roster info
+			//db.Players.findAll
+			res.json(dbRoster);
+		}).catch((err) => res.json(err));
+
 	});
 
 	app.get("/api/players/:id", (req, res) => {
@@ -63,15 +72,14 @@ module.exports = function (app) {
 	// Create
 	app.post("/api/manager", (req, res) => {
 		db.Manager.create({
-			email: req.body.email,
-			password: req.body.password,
+			displayName: req.body.displayName
 		})
 			.then((dbManager) => {
 				res.json(dbManager);
 			})
 			.catch((err) => res.json(err));
 	});
-	
+
 	app.post("/api/roster", (req, res) => {
 		db.Roster.create({
 			teamName: req.body.teamName,
@@ -94,7 +102,7 @@ module.exports = function (app) {
 			playerNumber: req.body.playerNumber,
 			points: req.body.points,
 			rebounds: req.body.rebounds,
-			assist: req.body.assist,
+			assists: req.body.assists,
 			gamesPlayed: req.body.gamesPlayed,
 			RosterId: req.body.RosterId
 		})
