@@ -3,7 +3,7 @@ import './PlayerCard.css';
 import profilepic from './profilepic.png';
 
 
-const PlayerCard = ({ firstName, lastName, phoneNumber, playerNumber, points, rebounds, assists, gamesPlayed }) => {
+const PlayerCard = ({ firstName, lastName, phoneNumber, playerNumber, points, rebounds, assist, gamesPlayed, deletePlayer }) => {
   return (
     <div className="playercard">
       <aside className="player-aside">
@@ -16,12 +16,20 @@ const PlayerCard = ({ firstName, lastName, phoneNumber, playerNumber, points, re
         <p className="player-number">Jersey Number: {playerNumber}</p>
         <p className="points">points: {points}</p>
         <p className="rebounds">rebounds: {rebounds}</p>
-        <p className="assists">assists: {assists}</p>
+        <p className="assist">assists: {assist}</p>
         <p className="total-games">Games Played: {gamesPlayed}</p>
       </div>
-      <div>
-        <button className="editplayer-btn" title="Edit Player">Update</button>
-        <button className="editstats-btn" title="Edit Player Stats">Stats</button>
+      <div className="player-buttons">
+
+        <button
+          onClick={deletePlayer}
+          className="deleteplayer-btn"
+          title="Delete Player">
+          D
+        </button>
+
+        <button className="editplayer-btn" title="Edit Player">U</button>
+        <button className="editstats-btn" title="Edit Player Stats">S</button>
       </div>
     </div>
   )

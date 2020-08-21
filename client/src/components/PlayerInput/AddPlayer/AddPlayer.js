@@ -4,7 +4,7 @@ import './AddPlayer.css';
 const AddPlayer = ({ firstName, lastName, phoneNumber, playerNumber, handleInputChange, handleAddPlayer }) => {
   return (
     <div className="player-modal">
-      {console.log({ handleInputChange })}
+      {/* {console.log({ handleInputChange })} */}
       <div className="modal-content">
         <form>
           <h3>Add a player</h3><hr />

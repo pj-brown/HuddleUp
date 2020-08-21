@@ -4,12 +4,14 @@ import Navbar from '../components/Navbar/Navbar';
 
 class Schedule extends Component {
 	state = {};
+	// events: []
 
 	componentDidMount() {
 		console.log("Rendering Schedule!");
 	}
-  
-  render() {
+
+
+	render() {
 		return (
 			<div>
 				<Navbar />

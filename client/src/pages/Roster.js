@@ -69,6 +69,7 @@ const Roster = () => {
 						rebounds={player.rebounds}
 						assist={player.assist}
 						gamesPlayed={player.gamesPlayed}
+						deletePlayer={() => deletePlayer(player.id)}
 					/>
 				))}
 				{/* <PlayerCard /> */}
