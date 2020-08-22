@@ -21,9 +21,11 @@ const Splash = () => {
       if (signedIn) {
         const { user: authUser } = await auth.signInWithEmailAndPassword(email, password);
         currentUser = authUser;
+        console.log(currentUser)
       } else {
         const { user: newUser } = await auth.createUserWithEmailAndPassword(email, password);
         currentUser = newUser;
+        console.log(currentUser)
       }
 
       setUser({ displayName: currentUser.email, email: currentUser.email });

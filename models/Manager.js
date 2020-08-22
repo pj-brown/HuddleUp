@@ -5,8 +5,8 @@ module.exports = function (sequelize, DataTypes) {
     displayName: {
       type: DataTypes.STRING,
     },
-    uid :  {
-      type: DataTypes.STRING
+    uid: {
+      type: DataTypes.STRING,
     }
   });
 

@@ -78,12 +78,21 @@ app.get("/api/events", (req, res) => {
 			});
 		}
 	});
+	app.get("/api/manager/:id", (req, res) => {
+		if (req.user) {
+			db.Manager.findAll({
+				where: {
+					uid: req.params.id,
+				},
+			});
+		}
+	});
 
 	// Create
 	app.post("/api/manager", (req, res) => {
 		db.Manager.create({
 			displayName: req.body.displayName,
-			uid : req.body.uid
+			uid: req.body.uid
 		})
 			.then((dbManager) => {
 				res.json(dbManager);

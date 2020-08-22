@@ -7,10 +7,12 @@ export default {
   loadRoster: function () {
     return axios.get("/api/roster");
   },
-  createManager: function () {
-    return axios.post("/api/manager/");
+  // Adds a new user to the database
+  createManager: function (data) {
+    return axios.post("/api/manager", data);
   },
-  loadMabager: function () {
+  // Get user information
+  getManager: function () {
     return axios.get("/api/manager");
   },
   // getOnePlayer: function () {

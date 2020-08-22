@@ -12,7 +12,7 @@ ORANGE
   background: #3757AE;
   border-radius: 10px;
   color: white;
-  padding: 15px 5px;
+  padding: 30px 15px;
   position: relative;
 }
 
@@ -45,6 +45,7 @@ p {
 }
 
 .editstats-btn {
+  margin-top: 10px;
   position: absolute;
   right: 35px;
   bottom: 5px;
@@ -55,4 +56,21 @@ p {
   border-radius: 50%;
   background-color: #E26A0D;
   cursor: pointer;
+}
+
+.deleteplayer-btn {
+  position: absolute;
+  right: 65px;
+  bottom: 5px;
+  height: 25px;
+  line-height: 25px;
+  width: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #E26A0D;
+  cursor: pointer;
+}
+
+.player-buttons {
+  padding-top: 20px;
 }

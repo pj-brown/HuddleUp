@@ -1,31 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "../../src/App.css";
 import Navbar from "../components/Navbar/Navbar";
 import firebase from "../firebase/init";
 import API from "../utils/API";
+import UserContext from '../context/user';
+
 
 const Main = () => {
+	const { user, setUser } = useContext(UserContext);
 	const [manager, setManager] = useState([]);
 	const [roster, setRoster] = useState([]);
 
 
 	useEffect(() => {
-		verifyUser();
+		// verifyUser();
+		setUser(user)
+		console.log(user.displayName)
+		console.log(user.uid)
+		createManager(user);
 	}, [])
 
-	function verifyUser() {
-		var user = firebase.auth().currentUser;
-
-		if (user != null) {
-			user.providerData.forEach(function (profile) {
-				console.log("Sign-in provider: " + profile.providerId);
-				console.log("  Provider-specific UID: " + profile.uid);
-				console.log("  Name: " + profile.displayName);
-				console.log("  Email: " + profile.email);
-				console.log("  Photo URL: " + profile.photoURL);
-			});
-		}
-	}
+	// function verifyUser() {
+	// 	var user = firebase.auth().currentUser;
+	// 	if (user != null) {
+	// 		user.providerData.forEach(function (profile) {
+	// 			console.log("Sign-in provider: " + profile.providerId);
+	// 			console.log("  Provider-specific UID: " + profile.uid);
+	// 			console.log("  Name: " + profile.displayName);
+	// 			console.log("  Email: " + profile.email);
+	// 			console.log("  Photo URL: " + profile.photoURL);
+	// 		});
+	// 	}
+	// }
 
 	// load manager after handleCreateManager
 	function loadManager() {
@@ -34,11 +40,21 @@ const Main = () => {
 			.catch(err => console.log(err));
 	};
 
+	function createManager(user) {
+		API.createManager({
+			displayName: user.displayName,
+			uid: user.uid
+		})
+			.then(res => loadManager())
+			.catch(err => console.log(err));
+	}
+
 	// create manager on button click
 	function handleCreateManager(event) {
 		event.preventDefault();
 		API.createManager({
-			displayName: manager.displayName
+			displayName: user.displayName,
+			uid: user.uid
 		})
 			.then(res => loadManager())
 			.catch(err => console.log(err));
@@ -81,7 +97,7 @@ const Main = () => {
 						placeholder="Enter user name"
 					/>
 
-					<button onChange={handleCreateManager}>Create manager</button>
+					<button onClick={handleCreateManager}>Create manager</button>
 
 					<br /><hr />
 
