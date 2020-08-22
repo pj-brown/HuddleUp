@@ -35,7 +35,7 @@ const Roster = () => {
 
 	// When the form is submitted, use the API.savePlayer method to save the player data
 	// Then reload players from the database
-	function handleAddPlayer(event) {
+	function handleAddPlayer(event, roster) {
 		event.preventDefault();
 		console.log(formObject.firstName)
 		API.savePlayer({

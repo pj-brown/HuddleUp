@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-  createRoster: function () {
-    return axios.post("/api/roster");
+  createRoster: function (data) {
+    return axios.post("/api/roster", data);
   },
   loadRoster: function () {
     return axios.get("/api/roster");
@@ -14,6 +14,9 @@ export default {
   // Get user information
   getManager: function () {
     return axios.get("/api/manager");
+  },
+  getRoster: function() {
+    return axios.get("/api/roster/1");
   },
   // getOnePlayer: function () {
   //   return axios.get("/api/player:id");
@@ -34,7 +37,8 @@ export default {
     return axios.delete("/api/players/" + id);
   },
   // Saves a players to the database
-  savePlayer: function (playersData) {
-    return axios.post("/api/players", playersData);
+  savePlayer: function (data) {
+    return axios.post("/api/players", data);
   }
 };
+    

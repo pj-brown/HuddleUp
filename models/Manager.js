@@ -7,6 +7,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     uid: {
       type: DataTypes.STRING,
+      unique: true
     }
   });
 

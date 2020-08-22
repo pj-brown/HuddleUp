@@ -17,10 +17,10 @@ module.exports = function (app) {
 			.catch(err => res.json(err));
 	});
 
-	app.get("/api/roster", (req, res) => {
+	app.get("/api/roster/:id", (req, res) => {
 		db.Roster.findAll({
 			where: {
-				managerID: req.user.id,
+				managerID: req.params.id,
 			},
 		}).then((dbRoster) => {
 			//we have teh roster info
@@ -79,10 +79,11 @@ app.get("/api/events", (req, res) => {
 		}
 	});
 	app.get("/api/manager/:id", (req, res) => {
+		console.log(req.user);
 		if (req.user) {
 			db.Manager.findAll({
 				where: {
-					uid: req.params.id,
+					uid: req.params.uid,
 				},
 			});
 		}
@@ -107,7 +108,7 @@ app.get("/api/events", (req, res) => {
 			state: req.body.state,
 			bio: req.body.bio,
 			ManagerId: req.body.ManagerId
-		}).then( rosterDB => res.json(rosterDB))
+		}).then( dbRoster => res.json(dbRoster))
 		.catch((err) => res.json(err));
 });
 
@@ -122,7 +123,7 @@ app.get("/api/events", (req, res) => {
 			assist: req.body.assist,
 			gamesPlayed: req.body.gamesPlayed,
 			RosterId: req.body.RosterId
-		})
+		}).then( dbPlayers => res.json(dbPlayers))
 		.catch((err) => res.json(err));
 });
 

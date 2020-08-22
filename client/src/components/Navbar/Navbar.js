@@ -37,7 +37,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div>
-        <p>{user.displayName}</p>
+        <p></p>
         <button onClick={handleSignOut}>Sign out</button>
       </div>
     </nav>
