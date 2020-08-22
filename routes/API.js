@@ -82,7 +82,8 @@ app.get("/api/events", (req, res) => {
 	// Create
 	app.post("/api/manager", (req, res) => {
 		db.Manager.create({
-			displayName: req.body.displayName
+			displayName: req.body.displayName,
+			uid : req.body.uid
 		})
 			.then((dbManager) => {
 				res.json(dbManager);
@@ -97,7 +98,7 @@ app.get("/api/events", (req, res) => {
 			state: req.body.state,
 			bio: req.body.bio,
 			ManagerId: req.body.ManagerId
-		})
+		}).then( rosterDB => res.json(rosterDB))
 		.catch((err) => res.json(err));
 });
 
@@ -109,7 +110,7 @@ app.get("/api/events", (req, res) => {
 			playerNumber: req.body.playerNumber,
 			points: req.body.points,
 			rebounds: req.body.rebounds,
-			assists: req.body.assists,
+			assist: req.body.assist,
 			gamesPlayed: req.body.gamesPlayed,
 			RosterId: req.body.RosterId
 		})
