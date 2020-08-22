@@ -5,12 +5,15 @@ module.exports = function (sequelize, DataTypes) {
         eventDate: {
             type: DataTypes.DATE
         },
-        eventTime: {
+        eventStartTime: {
+            type: DataTypes.TIME
+        },
+        eventEndTime: {
             type: DataTypes.TIME
         },
         eventType: {
             type: DataTypes.INTEGER
-        },
+        }
 
     });
 

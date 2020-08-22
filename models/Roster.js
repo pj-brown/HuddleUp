@@ -20,6 +20,7 @@ module.exports = function (sequelize, DataTypes) {
 
         Roster.belongsTo(models.Manager, {
             foreignKey: {
+                targetKey: 'uid',
                 allowNull: false
             }
         });

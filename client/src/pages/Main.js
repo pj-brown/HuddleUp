@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import "../../src/App.css";
 import Navbar from "../components/Navbar/Navbar";
-import firebase from "../firebase/init";
+// import firebase from "../firebase/init";
 import API from "../utils/API";
 import UserContext from '../context/user';
 
@@ -15,9 +15,11 @@ const Main = () => {
 	useEffect(() => {
 		// verifyUser();
 		setUser(user)
-		console.log(user.displayName)
-		console.log(user.uid)
-		createManager(user);
+		console.log(user)
+		createNewManager(user);
+		// console.log(user)
+		loadRoster();
+		console.log(roster)
 	}, [])
 
 	// function verifyUser() {
@@ -34,24 +36,13 @@ const Main = () => {
 	// }
 
 	// load manager after handleCreateManager
-	function loadManager() {
-		API.getManager()
+	function loadManager(user) {
+		API.getManager(user)
 			.then(res => setManager(res.data))
 			.catch(err => console.log(err));
 	};
 
-	function createManager(user) {
-		API.createManager({
-			displayName: user.displayName,
-			uid: user.uid
-		})
-			.then(res => loadManager())
-			.catch(err => console.log(err));
-	}
-
-	// create manager on button click
-	function handleCreateManager(event) {
-		event.preventDefault();
+	function createNewManager(user) {
 		API.createManager({
 			displayName: user.displayName,
 			uid: user.uid
@@ -63,17 +54,22 @@ const Main = () => {
 	// load roster after handleCreateRoster
 	function loadRoster() {
 		API.getRoster()
-			.then(res => setRoster(res.data))
+			.then(res => {
+				console.log(res.data)
+				setRoster(res.data)
+				console.log(roster);
+			})
 			.catch(err => console.log(err));
 	};
 	// create roster on button click
-	function handleCreateRoster(event) {
+	function handleCreateRoster(event, user) {
 		event.preventDefault();
 		API.createRoster({
 			teamName: roster.teamName,
 			city: roster.city,
 			state: roster.state,
-			bio: roster.bio
+			bio: roster.bio,
+			ManagerId: 1
 		})
 			.then(res => loadRoster())
 			.catch(err => console.log(err));
@@ -81,63 +77,56 @@ const Main = () => {
 
 	return (
 		<div>
+			{console.log(roster)}
 			<Navbar />
-			<h1>manager display name here</h1>
-			<h3>roster team name here</h3>
-			<h3>roster team city and state here</h3>
-			<h3>roster team bio here</h3>
+			<h1>{user.displayName}</h1>
+			<h3>{roster.teamName}</h3>
+			<h3>{roster.city}, {roster.state}</h3>
+			<h3>{roster.bio}</h3>
 
 			<div className="container">
 				<form>
-					<label for="manager-name">Manager</label>
-					<input
-						type="text"
-						id="manager-name"
-						name={manager.displayName}
-						placeholder="Enter user name"
-					/>
-
-					<button onClick={handleCreateManager}>Create manager</button>
-
-					<br /><hr />
-
+					<h3>set up your team</h3>
 					<label for="team-name">Team Name</label>
 					<input
 						type="text"
 						id="team-name"
-						name={roster.teamName}
+						name="teamName"
 						placeholder="Enter team name"
+						type={roster.teamName}
 					/>
 
 					<label for="team-city">Team city</label>
 					<input
 						type="text" id="team-city"
-						name={roster.city}
+						name="teamCity"
 						placeholder="Enter team city"
+						type={roster.city}
 					/>
 
 					<label for="team-state">Team state</label>
 					<input
 						type="text"
 						id="team-state"
-						name={roster.state}
+						name="teamState"
 						placeholder="Enter team state"
+						type={roster.state}
 					/>
 
 					<label for="team-bio">Team bio</label>
 					<input
 						type="text"
 						id="team-bio"
-						name={roster.bio}
+						name="teamBio"
 						placeholder="Enter team bio"
+						type={roster.bio}
 					/>
 
-					<button onChange={handleCreateRoster}>Create roster</button>
+					<button onClick={handleCreateRoster}>Create roster</button>
 				</form>
 			</div>
-
 		</div>
 	)
 }
 
-export default Main
+export default Main;
