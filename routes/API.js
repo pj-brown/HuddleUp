@@ -25,6 +25,7 @@ module.exports = function (app) {
 		}).then((dbRoster) => {
 			//we have teh roster info
 			//db.Players.findAll
+			console.log(dbRoster)
 			res.json(dbRoster);
 		}).catch((err) => res.json(err));
 
