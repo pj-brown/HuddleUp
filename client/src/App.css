@@ -6,10 +6,17 @@ ORANGE
 #E26A0D
 */
 
+body {
+  background-image: url("basketball-hoop.jpg");
+  color: #cccccc;
+  height: 100vh;
+  background-size: cover;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
-  background: #3757AE;
+  background: #3757ae;
   width: 640px;
   padding: 10px 25px;
   border: none;
@@ -17,4 +24,39 @@ ORANGE
   color: white;
   font-size: 20px;
   font-weight: 500;
+}
+
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* .main-roster-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #3757ae;
+  width: 640px;
+} */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  height: 1.5rem;
+  border: 1px solid #999;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.login-btns {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
 }

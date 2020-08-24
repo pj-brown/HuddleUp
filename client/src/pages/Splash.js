@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import UserContext from '../context/user';
 import { auth, signInWithGoogle } from '../firebase/init';
 import { Redirect } from 'react-router-dom';
+import '../App.css'
 
 const Splash = () => {
   const { user, setUser } = useContext(UserContext);
@@ -43,13 +44,13 @@ const Splash = () => {
   if (user) return <Redirect to="/main" />
 
   return (
-    <div>
+    <div className="splash-container" >
       <h1>{signedIn ? "Sign In" : "Sign Up"}</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <span>Email</span>
-        <input type="email" name="email" onChange={e => setEmail(e.target.value)}></input>
-        <input type="password" name="password" onChange={e => setPassword(e.target.value)}></input>
-        <div>
+        <input className="form-input" type="email" name="email" onChange={e => setEmail(e.target.value)}></input>
+        <input className="form-input" type="password" name="password" onChange={e => setPassword(e.target.value)}></input>
+        <div className="login-btns">
           <button >{signedIn ? "Sign In" : "Sign Up"}</button>
           <button onClick={signInWithGoogle}>Sign In With Google</button>
         </div>
@@ -57,9 +58,9 @@ const Splash = () => {
           <span>{signedIn ? "Don't" : "Already"} have an account?</span>
           <button onClick={() => setSignedIn(!signedIn)}>{signedIn ? "Sign Up" : "Sign In"}</button>
         </div>
-      </form>
+      </form >
 
-    </div>
+    </div >
   );
 };
 
