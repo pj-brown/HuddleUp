@@ -20,7 +20,7 @@ module.exports = function (app) {
 	app.get("/api/roster/:id", (req, res) => {
 		db.Roster.findAll({
 			where: {
-				managerID: req.params.id,
+				ManagerID: req.params.id,
 			},
 		}).then((dbRoster) => {
 			//we have teh roster info

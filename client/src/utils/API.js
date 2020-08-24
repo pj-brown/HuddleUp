@@ -37,8 +37,8 @@ export default {
     return axios.delete("/api/players/" + id);
   },
   // Saves a players to the database
-  savePlayer: function (data) {
-    return axios.post("/api/players", data);
+  savePlayer: function (playersData) {
+    return axios.post("/api/players", playersData);
   }
 };
     
