@@ -6,6 +6,7 @@ import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import API from "../utils/API";
 // import "import AddToCalendar from 'react-add-to-calendar;"
 
 const localizer = momentLocalizer(moment);
@@ -15,31 +16,34 @@ class Schedule extends Component {
     events: [
       {
         start: moment().toDate(),
-        end: moment().add(0, "days").toDate(),
+        end: moment().add(3, "hours").toDate(),
         title: "Some title",
       },
     ],
   };
-//  createEvent =(data) => {}
+  //  createEvent =(data) => {}
 
   onEventResize = (data) => {
     const { start, end } = data;
-    this.setState((state) => {
-      state.events[0].start = start;
-      state.events[0].end = end;
-      return { events: state.events };
-    });
+    API.getEvents()
+      .then(res => {
+        this.setState((state) => {
+          state.events[0].start = start;
+          state.events[0].end = end;
+          return { events: state.events };
+        });
+      })
   };
 
   onEventDrop = (data) => {
     console.log(data);
   };
-  
+
   render() {
     return (
       <div className="Schedule">
         <Navbar />
-        <EventCalendar
+        <Calendar
           defaultDate={moment().toDate()}
           defaultView="month"
           events={this.state.events}
@@ -47,13 +51,10 @@ class Schedule extends Component {
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           resizable
-          style={{ height: "100vh" }}
+          style={{ height: "100vh", background: "white" }}
         />
       </div>
     );
   }
 }
 export default Schedule;
-
-
-

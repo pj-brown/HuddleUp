@@ -3,7 +3,6 @@ import '../../src/App.css';
 import Navbar from '../components/Navbar/Navbar';
 import PlayerCard from '../components/PlayerCard/PlayerCard';
 import AddPlayer from '../components/PlayerInput/AddPlayer/AddPlayer';
-import AddStats from '../components/PlayerInput/AddStats/AddStats';
 import API from '../utils/API';
 
 const Roster = () => {
@@ -65,10 +64,6 @@ const Roster = () => {
 						lastName={player.lastName}
 						phoneNumber={player.phoneNumber}
 						playerNumber={player.playerNumber}
-						points={player.points}
-						rebounds={player.rebounds}
-						assist={player.assist}
-						gamesPlayed={player.gamesPlayed}
 						deletePlayer={() => deletePlayer(player.id)}
 					/>
 				))}
@@ -82,7 +77,7 @@ const Roster = () => {
 				phoneNumber={formObject.phoneNumber}
 				playerNumber={formObject.playerNumber}
 			/>
-			<AddStats />
+
 		</div>
 	)
 }
