@@ -14,12 +14,25 @@ const Main = () => {
 
 	useEffect(() => {
 		// verifyUser();
+		// async function getData() {
+		// 	setUser(user)
+		// 	console.log(user)
+		// 	await createNewManager(user);
+		// 	// console.log(user)
+		// 	await loadRoster();
+		// 	console.log(roster)
+		// }
+		// getData();
+
 		setUser(user)
 		console.log(user)
-		createNewManager(user);
-		// console.log(user)
-		loadRoster();
-		console.log(roster)
+		createNewManager(user).then(res => {
+			loadRoster().then(resTwo => {
+				console.log(roster)
+			})
+		});
+
+
 	}, [])
 
 	// function verifyUser() {
@@ -43,17 +56,23 @@ const Main = () => {
 	};
 
 	function createNewManager(user) {
-		API.createManager({
+
+		return API.createManager({
 			displayName: user.displayName,
 			uid: user.uid
 		})
-			.then(res => loadManager())
+			.then(res => {
+				loadManager()
+				console.log(res);
+				return "Res test"
+			})
 			.catch(err => console.log(err));
 	}
 
 	// load roster after handleCreateRoster
 	function loadRoster() {
-		API.getRoster()
+
+		return API.getRoster()
 			.then(res => {
 				console.log(res.data)
 				setRoster(res.data)
@@ -61,6 +80,7 @@ const Main = () => {
 			})
 			.catch(err => console.log(err));
 	};
+
 	// create roster on button click
 	function handleCreateRoster(event, user) {
 		event.preventDefault();
@@ -74,59 +94,111 @@ const Main = () => {
 			.then(res => loadRoster())
 			.catch(err => console.log(err));
 	}
+	if (roster.length > 0) {
+		return (
 
-	return (
-		<div>
-			{console.log(roster)}
-			<Navbar />
-			<h1>{user.displayName}</h1>
-			<h3>{roster.teamName}</h3>
-			<h3>{roster.city}, {roster.state}</h3>
-			<h3>{roster.bio}</h3>
+			<div>
+				{console.log(roster)}
+				<Navbar />
+				<h1>{user.displayName}</h1>
+				<h3>{roster[0].teamName}</h3>
+				<h3>{roster[0].city}, {roster[0].state}</h3>
+				<h3>{roster[0].bio}</h3>
 
-			<div className="container">
-				<form>
-					<h3>set up your team</h3>
-					<label for="team-name">Team Name</label>
-					<input
-						type="text"
-						id="team-name"
-						name="teamName"
-						placeholder="Enter team name"
-						type={roster.teamName}
-					/>
+				<div className="container">
+					<form>
+						<h3>set up your team</h3>
+						<label htmlFor="team-name">Team Name</label>
+						<input
+							type="text"
+							id="team-name"
+							name="teamName"
+							placeholder="Enter team name"
+							value={roster.teamName}
+						/>
 
-					<label for="team-city">Team city</label>
-					<input
-						type="text" id="team-city"
-						name="teamCity"
-						placeholder="Enter team city"
-						type={roster.city}
-					/>
+						<label htmlFor="team-city">Team city</label>
+						<input
+							type="text" id="team-city"
+							name="teamCity"
+							placeholder="Enter team city"
+							value={roster.city}
+						/>
 
-					<label for="team-state">Team state</label>
-					<input
-						type="text"
-						id="team-state"
-						name="teamState"
-						placeholder="Enter team state"
-						type={roster.state}
-					/>
+						<label htmlFor="team-state">Team state</label>
+						<input
+							type="text"
+							id="team-state"
+							name="teamState"
+							placeholder="Enter team state"
+							value={roster.state}
+						/>
 
-					<label for="team-bio">Team bio</label>
-					<input
-						type="text"
-						id="team-bio"
-						name="teamBio"
-						placeholder="Enter team bio"
-						type={roster.bio}
-					/>
+						<label htmlFor="team-bio">Team bio</label>
+						<input
+							type="text"
+							id="team-bio"
+							name="teamBio"
+							placeholder="Enter team bio"
+							value={roster.bio}
+						/>
 
-					<button onClick={handleCreateRoster}>Create roster</button>
-				</form>
+						<button onClick={handleCreateRoster}>Create roster</button>
+					</form>
+				</div>
 			</div>
-		</div>
-	)
+
+		)
+	} else {
+		return (
+			<div>
+				<Navbar />
+				<div className="container">
+					<h1>{user.displayName}</h1>
+					<form>
+						<h3>set up your team</h3>
+						<label htmlFor="team-name">Team Name</label>
+						<input
+							type="text"
+							id="team-name"
+							name="teamName"
+							placeholder="Enter team name"
+							value={roster.teamName}
+						/>
+
+						<label htmlFor="team-city">Team city</label>
+						<input
+							type="text" id="team-city"
+							name="teamCity"
+							placeholder="Enter team city"
+							value={roster.city}
+						/>
+
+						<label htmlFor="team-state">Team state</label>
+						<input
+							type="text"
+							id="team-state"
+							name="teamState"
+							placeholder="Enter team state"
+							value={roster.state}
+						/>
+
+						<label htmlFor="team-bio">Team bio</label>
+						<input
+							type="text"
+							id="team-bio"
+							name="teamBio"
+							placeholder="Enter team bio"
+							value={roster.bio}
+						/>
+
+						<button onClick={handleCreateRoster}>Create roster</button>
+					</form>
+				</div>
+			</div>
+		)
+	}
 }
+
 
 export default Main;

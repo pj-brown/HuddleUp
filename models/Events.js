@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TIME
         },
         eventType: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         }
 
     });
