@@ -39,7 +39,10 @@ const Roster = () => {
 	function handleAddPlayer(event, roster) {
 		event.preventDefault();
 		console.log(formObject.firstName)
-		API.savePlayer({
+		var uid = JSON.parse(localStorage.getItem("currentUser")).uid;
+    	API.getRoster(uid).then(({data}) =>
+		{
+			return API.savePlayer({
 			firstName: formObject.firstName,
 			lastName: formObject.lastName,
 			phoneNumber: formObject.phoneNumber,
@@ -48,8 +51,8 @@ const Roster = () => {
 			rebounds: 0,
 			assist: 0,
 			gamesPlayed: 0,
-			RosterId: 1
-		})
+			RosterId: data[0].id
+		})})
 			.then(res => loadPlayers())
 			.catch(err => console.log(err));
 	};

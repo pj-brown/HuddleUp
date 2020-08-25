@@ -7,7 +7,7 @@ const AddRoster = ({ teamName, city, state, bio, handleInputChange, handleCreate
       <div className="modal-content">
         <form>
           <h3 style={{ textAlign: "center" }}>Set up your team!</h3><hr />
-          <label for="team-name">Team Name</label>
+          <label htmlFor="team-name">Team Name</label>
           <input
             onChange={handleInputChange}
             type="text"
@@ -17,7 +17,7 @@ const AddRoster = ({ teamName, city, state, bio, handleInputChange, handleCreate
             value={teamName}
           />
 
-          <label for="team-city">City</label>
+          <label htmlFor="team-city">City</label>
           <input
             onChange={handleInputChange}
             type="text"
@@ -27,7 +27,7 @@ const AddRoster = ({ teamName, city, state, bio, handleInputChange, handleCreate
             value={city}
           />
 
-          <label for="team-state">State</label>
+          <label htmlFor="team-state">State</label>
           <input
             onChange={handleInputChange}
             type="text"
@@ -37,7 +37,7 @@ const AddRoster = ({ teamName, city, state, bio, handleInputChange, handleCreate
             value={state}
           />
 
-          <label for="team-bio">Team biography</label>
+          <label htmlFor="team-bio">Team biography</label>
           <input
             onChange={handleInputChange}
             type="text"

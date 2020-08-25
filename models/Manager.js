@@ -14,7 +14,9 @@ module.exports = function (sequelize, DataTypes) {
   Manager.associate = function (models) {
 
     Manager.hasOne(models.Roster, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      foreignKey: "ManagerId",
+      sourceKey: "uid"
     });
   };
   return Manager;

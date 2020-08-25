@@ -2,19 +2,16 @@
 module.exports = function (sequelize, DataTypes) {
     const Event = sequelize.define("Events", {
         // The email cannot be null, and must be a proper email before creation
-        StartDate: {
-            type: DataTypes.DATE 
+        EventDate: {
+            type: DataTypes.DATE
         },
-        StartTime: {
-            type: DataTypes.TIME 
-        },
-        EndDate: {
-            type: DataTypes.DATE 
-        },
-        EndTime: {
+        EventStartTime: {
             type: DataTypes.TIME
         },
-        Title: {
+        EventEndTime: {
+            type: DataTypes.TIME
+        },
+        EventType: {
             type: DataTypes.STRING
         }
 
