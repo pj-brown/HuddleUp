@@ -15,6 +15,8 @@ body {
 
 .container {
   display: flex;
+  margin: auto;
+  margin-top: 50px;
   justify-content: space-around;
   background: #3757ae;
   width: 640px;
@@ -33,15 +35,6 @@ body {
   flex-direction: column;
 }
 
-/* .main-roster-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: #3757ae;
-  width: 640px;
-} */
-
 .login-form {
   display: flex;
   flex-direction: column;
@@ -59,4 +52,9 @@ body {
   display: flex;
   flex-direction: column;
   margin: 5px;
+}
+
+.roster-info {
+  display: inline-block;
+  flex-direction: column;
 }

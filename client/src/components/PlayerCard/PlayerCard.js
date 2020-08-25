@@ -5,7 +5,7 @@ import profilepic from './profilepic.png';
 
 const PlayerCard = ({ firstName, lastName, phoneNumber, playerNumber, points, rebounds, assist, gamesPlayed, deletePlayer }) => {
   return (
-    <div className="playercard">
+    <div className="player-card">
       <aside className="player-aside">
         <img src={profilepic} style={{ width: "100px" }} />
         <p className="player-name">{firstName} {lastName}</p>

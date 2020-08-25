@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Rocinante75_q",
+    "password": "password",
     "database": "huddleup_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -15,10 +15,6 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "username": "uo4vmacrriynw16k",
-    "password": "mnxu46t6ssqg2dzs",
-    "database": "wgeor1ecr3kefz4e",
-    "host": "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
