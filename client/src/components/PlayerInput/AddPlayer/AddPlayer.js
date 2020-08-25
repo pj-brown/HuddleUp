@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddPlayer.css';
 
-const AddPlayer = ({ firstName, lastName, phoneNumber, playerNumber, handleInputChange, handleAddPlayer }) => {
+const AddPlayer = ({ firstName, lastName, phoneNumber, playerNumber, handleInputChange, handleAddPlayer, handleClose }) => {
   return (
     <div className="player-modal">
       {/* {console.log({ handleInputChange })} */}
@@ -49,7 +49,7 @@ const AddPlayer = ({ firstName, lastName, phoneNumber, playerNumber, handleInput
         </form>
         <div>
 
-          <button className="modal-close" title="Close">Close</button>
+          <button onClick={handleClose} className="modal-close" title="Close">Close</button>
         </div>
       </div>
     </div>

@@ -125,17 +125,18 @@ const Main = () => {
 		return (
 
 			<div>
-				{console.log(roster)}
 				<Navbar />
-				<div className="roster-info" style={{
-					margin: "auto"
-				}} >
-					< h1 > {user.displayName}</h1>
-					<h3>{roster[0].teamName}</h3>
-					<h3>{roster[0].city}, {roster[0].state}</h3>
-					<h3>{roster[0].bio}</h3>
-				</div >
-
+				<h1 style={{ textAlign: "center" }}>Welcome {user.displayName}!</h1>
+				<div className="container">
+					<div className="roster-info">
+						<label>Team Name:</label>
+						<h3 style={{ backgroundColor: "#243e85", padding: "5px", borderRadius: "5px", textAlign: "center" }}>{roster[0].teamName}</h3>
+						<label>Location:</label>
+						<h3 style={{ backgroundColor: "#243e85", padding: "5px", borderRadius: "5px", textAlign: "center" }}>{roster[0].city}, {roster[0].state}</h3>
+						<label>Bio:</label>
+						<h3 style={{ backgroundColor: "#243e85", padding: "5px", borderRadius: "5px", textAlign: "left" }}>{roster[0].bio}</h3>
+					</div >
+				</div>
 			</div >
 
 		)
@@ -143,8 +144,8 @@ const Main = () => {
 		return (
 			<div>
 				<Navbar />
-				<div className="main-roster-container">
-					<h1>Welcome {user.displayName}!</h1>
+				<h1 style={{ textAlign: "center" }}>Welcome {user.displayName}!</h1>
+				<div className="container">
 					<AddRoster
 						handleInputChange={handleInputChange}
 						handleCreateRoster={handleCreateRoster}
