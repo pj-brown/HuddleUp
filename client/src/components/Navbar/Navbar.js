@@ -32,12 +32,13 @@ const Navbar = () => {
         <Tabs
           variant="fullWidth"
           indicatorColor="primary"
-          textColor="primary"
-          aria-label="icon tabs example">
-          <Tab icon={<PostAddIcon />} aria-label="phone" label="Statistics" component={Link} to={"/statistics"} />
-          <Tab icon={<CalendarTodayIcon />} aria-label="favorite" label="Schedule" component={Link} to={"/schedule"} />
-          <Tab icon={<PeopleIcon />} aria-label="person" label="Roster" component={Link} to={"/roster"} />
-          <Tab icon={<ExitToAppIcon />} aria-label="person" label="Sign Out" onClick={handleSignOut} />
+          // textColor="primary"
+          aria-label="icon tabs example"
+          value={2}>
+          <Tab index={0} value={0} icon={<PostAddIcon />} aria-label="phone" label="Statistics" component={Link} to={"/statistics"} />
+          <Tab index={1} value={1} icon={<CalendarTodayIcon />} aria-label="favorite" label="Schedule" component={Link} to={"/schedule"} />
+          <Tab index={2} value={2} icon={<PeopleIcon />} aria-label="person" label="Roster" component={Link} to={"/roster"} />
+          <Tab index={3} value={3} icon={<ExitToAppIcon />} aria-label="person" label="Sign Out" onClick={handleSignOut} />
         </Tabs>
       </Toolbar>
     </AppBar >

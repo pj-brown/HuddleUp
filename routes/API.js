@@ -20,14 +20,11 @@ module.exports = function (app) {
 	app.get("/api/roster/:id", (req, res) => {
 		db.Roster.findAll({
 			where: {
-				ManagerID: req.params.id,
+				ManagerId: req.params.id,
 			},
-		}).then((dbRoster) => {
-			//we have teh roster info
-			//db.Players.findAll
-			console.log(dbRoster)
-			res.json(dbRoster);
-		}).catch((err) => res.json(err));
+		})
+		.then((dbRoster) => res.json(dbRoster))
+		.catch((err) => res.json(err));
 
 	});
 
@@ -61,13 +58,13 @@ module.exports = function (app) {
 	});
 
 	app.get("/api/events/:id", (req, res) => {
-		if (req.user) {
-			db.Event.findAll({
+			db.Events.findAll({
 				where: {
 					RosterId: req.params.id,
 				},
-			});
-		}
+			})
+			.then(response => res.json(response))
+			.catch(err => res.json(err));
 	});
 
 	app.get("/api/manager/:id", (req, res) => {
@@ -94,14 +91,12 @@ module.exports = function (app) {
 	});
 
 	app.post("/api/roster", (req, res) => {
-		db.Roster.create({
-			teamName: req.body.teamName,
-			city: req.body.city,
-			state: req.body.state,
-			bio: req.body.bio,
-			ManagerId: req.body.ManagerId
-		}).then(dbRoster => res.json(dbRoster))
-			.catch((err) => res.json(err));
+		db.Roster.create(req.body)
+			.then(dbRoster => res.json(dbRoster))
+			.catch((err) => {
+				console.log(err);
+				res.json(err)
+			});
 	});
 
 	app.post("/api/players", (req, res) => {

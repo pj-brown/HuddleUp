@@ -7,7 +7,7 @@ const PlayerCard = ({ firstName, lastName, phoneNumber, playerNumber, points, re
   return (
     <div className="player-card">
       <aside className="player-aside">
-        <img src={profilepic} style={{ width: "100px" }} />
+        <img src={profilepic} style={{ width: "100px" }} alt="player" />
         <p className="player-name">{firstName} {lastName}</p>
       </aside>
 

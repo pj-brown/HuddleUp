@@ -19,10 +19,8 @@ module.exports = function (sequelize, DataTypes) {
     Roster.associate = function (models) {
 
         Roster.belongsTo(models.Manager, {
-            foreignKey: {
-                targetKey: 'uid',
-                allowNull: false
-            }
+            foreignKey: "ManagerId",
+            sourceKey: "uid"
         });
 
         // update later

@@ -15,8 +15,8 @@ export default {
   getManager: function () {
     return axios.get("/api/manager");
   },
-  getRoster: function () {
-    return axios.get("/api/roster/1");
+  getRoster: function (mId) {
+    return axios.get("/api/roster/"+mId);
   },
   // getOnePlayer: function () {
   //   return axios.get("/api/player:id");
@@ -40,7 +40,7 @@ export default {
   savePlayer: function (playersData) {
     return axios.post("/api/players", playersData);
   },
-  getEvents: function (id) {
-    return axios.get("/api/events/" + id);
+  getEvents: function (rId) {
+    return axios.get("/api/events/"+rId);
   }
 };
