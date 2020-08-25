@@ -6,7 +6,7 @@ const AddRoster = ({ teamName, city, state, bio, handleInputChange, handleCreate
     <div className="roster-modal">
       <div className="modal-content">
         <form>
-          <h3>Set up your team!</h3><hr />
+          <h3 style={{ textAlign: "center" }}>Set up your team!</h3><hr />
           <label for="team-name">Team Name</label>
           <input
             onChange={handleInputChange}

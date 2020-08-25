@@ -4,10 +4,12 @@ import Navbar from '../components/Navbar/Navbar';
 import PlayerCard from '../components/PlayerCard/PlayerCard';
 import AddPlayer from '../components/PlayerInput/AddPlayer/AddPlayer';
 import API from '../utils/API';
+import { Modal, Button } from '@material-ui/core';
 
 const Roster = () => {
 	const [players, setPlayers] = useState([]);
 	const [formObject, setFormObject] = useState({})
+	const [open, setOpen] = React.useState(false);
 
 	useEffect(() => {
 		loadPlayers()
@@ -52,12 +54,47 @@ const Roster = () => {
 			.catch(err => console.log(err));
 	};
 
+	const handleOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const body = (
+		<div className="container">
+			<AddPlayer
+				handleInputChange={handleInputChange}
+				handleAddPlayer={handleAddPlayer}
+				firstName={formObject.firstName}
+				lastName={formObject.lastName}
+				phoneNumber={formObject.phoneNumber}
+				playerNumber={formObject.playerNumber}
+				handleClose={handleClose}
+			/>
+		</div>
+	);
 
 	return (
 		<div>
 			<Navbar />
-			<h1>Roster Page</h1>
-			<div className="players-container">
+			<h1 style={{ textAlign: "center" }}>Roster</h1>
+
+			<div className="container">
+				<div>
+					<button type="button" onClick={handleOpen}>Create Player</button>
+					<Modal
+						open={open}
+						onClose={handleClose}
+						aria-labelledby="simple-modal-title"
+						aria-describedby="simple-modal-description"
+					>
+						{body}
+					</Modal>
+				</div>
+			</div>
+			<div className="container">
 				{players.map(player => (
 					<PlayerCard
 						firstName={player.firstName}
@@ -69,15 +106,6 @@ const Roster = () => {
 				))}
 				{/* <PlayerCard /> */}
 			</div>
-			<AddPlayer
-				handleInputChange={handleInputChange}
-				handleAddPlayer={handleAddPlayer}
-				firstName={formObject.firstName}
-				lastName={formObject.lastName}
-				phoneNumber={formObject.phoneNumber}
-				playerNumber={formObject.playerNumber}
-			/>
-
 		</div>
 	)
 }

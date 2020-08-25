@@ -4,6 +4,10 @@
   "private": true,
   "proxy": "http://localhost:8080/",
   "secure": false,
+  "engines": {
+    "npm": "6.14.4",
+    "node": "12.17.0"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
