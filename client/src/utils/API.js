@@ -18,6 +18,9 @@ export default {
   getRoster: function () {
     return axios.get("/api/roster/1");
   },
+  getUser: function () {
+    return axios.get("/auth/user");
+  },
   // getOnePlayer: function () {
   //   return axios.get("/api/player:id");
   // },

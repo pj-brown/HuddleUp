@@ -17,11 +17,17 @@ class Schedule extends Component {
       {
         start: moment().toDate(),
         end: moment().add(3, "hours").toDate(),
-        title: "Some title",
+		title: "Some title",
       },
     ],
   };
-  //  createEvent =(data) => {}
+  onComponentDidMount(){
+   API.getUser();
+   .then(res => {
+     
+   })
+    
+  }
 
   onEventResize = (data) => {
     const { start, end } = data;
@@ -43,7 +49,7 @@ class Schedule extends Component {
     return (
       <div className="Schedule">
         <Navbar />
-        <Calendar
+        <EventCalendar
           defaultDate={moment().toDate()}
           defaultView="month"
           events={this.state.events}

@@ -69,6 +69,13 @@ module.exports = function (app) {
 			});
 		}
 	});
+	app.get("/auth/user" ,(req, res) => {
+		if(req.user){
+			res.json(req.user)
+		}else{
+			res.json({})
+		}
+	});
 
 	app.get("/api/manager/:id", (req, res) => {
 		console.log(req.user);

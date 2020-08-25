@@ -34,27 +34,15 @@ const Main = () => {
 
 
 	useEffect(() => {
-		// verifyUser();
-		// async function getData() {
-		// 	setUser(user)
-		// 	console.log(user)
-		// 	await createNewManager(user);
-		// 	// console.log(user)
-		// 	await loadRoster();
-		// 	console.log(roster)
-		// }
-		// getData();
-
+	
 		setUser(user)
 		console.log(user)
 		createNewManager(user).then(res => {
-			loadRoster().then(resTwo => {
-				console.log(roster)
-			})
-		});
-
-
-	}, [])
+			return loadRoster()
+		}).then(resTwo => {
+			console.log(roster);
+		}).catch(err => console.log(err))
+	}, []);
 
 	// function verifyUser() {
 	// 	var user = firebase.auth().currentUser;
