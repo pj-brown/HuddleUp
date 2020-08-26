@@ -30,18 +30,18 @@ class Schedule extends Component {
   }
 
   getCurrentEvents = () => {
-    API.getEvents(this.state.rosterId).then(({data}) => {
+    // API.getEvents(this.state.rosterId).then(({data}) => {
       var eventArr = [];
-      data.map(event => {
-        var startDT = moment(event.eventDate + ' ' + event.eventStartTime, 'YYYY-MM-DD HH:mm')
-        var endDT = moment(event.eventDate + ' ' + event.eventEndTime, 'YYYY-MM-DD HH:mm')
-        eventArr.push({
-          start: startDT,
-          end: endDT,
-          title:event.eventType})
-      })
-      this.setState({events: eventArr});
-    })
+    //   data.map(event => {
+    //     var startDT = moment(event.eventDate + ' ' + event.eventStartTime, 'YYYY-MM-DD HH:mm')
+    //     var endDT = moment(event.eventDate + ' ' + event.eventEndTime, 'YYYY-MM-DD HH:mm')
+    //     eventArr.push({
+    //       start: startDT,
+    //       end: endDT,
+    //       title:event.eventType})
+    //   })
+    //   this.setState({events: eventArr});
+    // })
   }
 
   // onEventResize = (data) => {
@@ -105,7 +105,7 @@ class Schedule extends Component {
         <Navbar />
         <div className="container">
 				<div>
-					<button type="button" onClick={this.handleOpen}>Create Player</button>
+					<button type="button" onClick={this.handleOpen}>Create Event</button>
 					<Modal
 						open={this.state.open}
 						onClose={this.handleClose}

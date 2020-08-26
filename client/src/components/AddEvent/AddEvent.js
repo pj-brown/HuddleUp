@@ -7,7 +7,7 @@ const AddEvent = ({ eventDate, eventStartTime, eventEndTime, eventType,handleInp
             {/* {console.log({ handleInputChange })} */}
             <div className="modal-content">
                 <form>
-                    <h3>Add a player</h3><hr />
+                    <h3>Add an Event</h3><hr />
                     <label for="event-date">Start Date</label>
                     <input
                         onChange={handleInputChange}
@@ -44,7 +44,7 @@ const AddEvent = ({ eventDate, eventStartTime, eventEndTime, eventType,handleInp
                         value={eventType}
                     />             
 
-                    <button onClick={handleAddEvent} className="add-event" title="Add Event">Add Player</button>
+                    <button onClick={handleAddEvent} className="add-event" title="Add Event">Add Event</button>
 
                 </form>
                 <div>
